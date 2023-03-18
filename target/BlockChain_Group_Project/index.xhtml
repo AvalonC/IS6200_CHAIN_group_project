@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>IS6200 Demo Application</title>
+    <link rel="stylesheet" href="css/topbar.css"/>
+    <style type="text/css">
+        body {
+            background: url("https://i.bmp.ovh/imgs/2022/05/09/84d3661dac387604.png") no-repeat center center fixed;
+            background-size: auto, 100%;
+        }
+
+        .ui-panelgrid {
+            background: transparent !important;
+        }
+
+        /*去掉背景的关键代码*/
+
+        .ui-panelgrid-cell {
+            background: transparent !important;
+        }
+
+        /*去掉背景的关键代码*/
+
+        .ui-widget {
+            font-family: "Ubuntu", sans-serif !important;
+        }
+
+        .ui-button {
+            font-family: "Ubuntu", sans-serif !important;
+        }
+    </style>
+</h:head>
+<h:body>
+    <div class="top-bar">
+        <div class="box-top">
+            <ul class="top-ui">
+                <li>
+                    <a style="pointer-events: none"><img alt="logo" src="img/CityU.png"/></a>
+                </li>
+                <li>
+                    <a style="pointer-events: none"><img alt="logo" src="img/PageLogo.png"/></a>
+                </li>
+                <li>
+                    <h2 style="pointer-events: none">CHAIN Group Project (Demo Application)</h2>
+                </li>
+                <li>
+                    <a>Hires</a>
+                </li>
+                <li>
+                    <a>Mobilisation</a>
+                </li>
+                <li>
+                    <a>Inquiry</a>
+                </li>
+                <li>
+                    <a>Identity Check</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div style="margin-top: 3%;position: relative;color: transparent;
+         box-shadow: 0 4px 8px 0 rgba(0,0,0,0), 0 6px 20px 0 rgba(0,0,0,0);">
+        <p:panelGrid columns="3" layout="grid">
+
+            <p:card style="width: 25em">
+                <f:facet name="header">
+                    <img alt="user header" src="https://i.328888.xyz/2023/03/12/vDFux.png"/>
+                </f:facet>
+                <f:facet name="title">
+                    Blockchain Network
+                </f:facet>
+                <f:facet name="subtitle">
+                    A decentralised future
+                </f:facet>
+
+                <p>A blockchain is a distributed ledger with growing lists of records (blocks) that are securely linked together via cryptographic hashes.
+                    Each block contains a cryptographic hash of the previous block, a timestamp, and transaction data (generally represented as a Merkle tree).
+                </p>
+
+                <f:facet name="footer">
+                    <p:button icon="pi pi-chevron-right" value="Wikipedia: Blockchain"
+                              type="button"
+                              href="https://en.wikipedia.org/wiki/Blockchain"/>
+                </f:facet>
+            </p:card>
+
+            <p:card style="width: 25em">
+                <f:facet name="header">
+                    <img alt="user header" src="https://i.328888.xyz/2023/03/12/vDxpb.png"/>
+                </f:facet>
+                <f:facet name="title">
+                    Powered By HyperLedger Fabric
+                </f:facet>
+                <f:facet name="subtitle">
+                    Outstanding Blockchain architecture
+                </f:facet>
+
+                <p>Hyperledger Fabric delivers a uniquely elastic and extensible architecture,
+                    distinguishing it from alternative blockchain solutions.
+                    Planning for the future of enterprise blockchain requires building on top of a fully-vetted,
+                    open source architecture; Hyperledger Fabric is your starting point.</p>
+
+                <f:facet name="footer">
+                    <p:button icon="pi pi-chevron-right" value="HyperLedger Fabric: Offical" type="button"
+                              href="https://www.hyperledger.org/use/fabric"/>
+                </f:facet>
+            </p:card>
+
+            <p:card style="width: 25em;">
+                <f:facet name="header">
+                    <img alt="user header" src="https://i.328888.xyz/2023/03/12/vWVr3.png"/>
+                </f:facet>
+                <f:facet name="title">
+                    Blockchain X Human Resource
+                </f:facet>
+                <f:facet name="subtitle">
+                    Makes the privacy become important
+                </f:facet>
+
+                <p>This demo program shows the four most common daily operations of the human resources department:
+                    hires, mobilisation, Inquiry and identity check, start experience the security and credible human resource system based on blockchain.</p>
+
+                <f:facet name="footer">
+                    <p:button icon="pi pi-chevron-right" value="Check: Project Proposal" type="button"
+                              href="https://portland-my.sharepoint.com/:w:/g/personal/guanzwang4-c_my_cityu_edu_hk/ESDM0uBpvw5EnK8rEmzHt1oBaunLHedyHvoj83Kq90CU_Q?e=s3KvoX"/>
+                </f:facet>
+            </p:card>
+
+        </p:panelGrid>
+    </div>
+</h:body>
+</html>

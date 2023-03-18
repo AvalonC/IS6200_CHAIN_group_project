@@ -1,0 +1,79 @@
+.top-bar {
+    width: 100%;
+    height: 60px;
+    margin: 0;
+    display: flow;
+}
+
+.box-top {
+    width: auto;
+    background: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 20px;
+    height: 80px;
+    margin-right: -0.5%;
+    margin-left: -0.5%;
+    margin-top: -1%;
+}
+
+.top-ui {
+    width: 100%;
+    height: 60px;
+    list-style: none;
+    margin-top: -10px;
+    margin-bottom: 0px;
+    padding-inline-start: 0px;
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.top-ui li {
+    width: auto;
+    /*           min-width: 50px;*/
+    padding: 0px 1% 0 1%;
+    float: left;
+    text-align: left;
+    display: flex;
+    font-family: "Ubuntu", sans-serif;
+}
+
+.top-ui a {
+    background-image: linear-gradient(to top left, steelblue, deepskyblue);
+    -webkit-background-clip: text;
+    color: transparent;
+    text-decoration: none;
+    font-size: large;
+    font-family: "Ubuntu", sans-serif;
+}
+
+.top-ui a:hover {
+    color: royalblue;
+}
+
+.top-ui img {
+    height: 70px;
+    margin: 0;
+    padding-top: 10px;
+    display: inline;
+    position: relative;
+}
+
+.top-ui h2 {
+    background-image: linear-gradient(to top left, steelblue, deepskyblue);
+    -webkit-background-clip: text;
+    color: transparent;
+    margin: 0;
+    padding: 0;
+    font-family: "Ubuntu", sans-serif;
+}
+
+body .ui-clock {
+    color: transparent;
+    border: 0 transparent;
+    font-size: large;
+    background-image: linear-gradient(to top left, steelblue, deepskyblue);
+    -webkit-background-clip: text;
+    font-family: "Ubuntu", sans-serif;
+}
