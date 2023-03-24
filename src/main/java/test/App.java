@@ -10,6 +10,7 @@ package test;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+
 import org.hyperledger.fabric.gateway.Contract;
 import org.hyperledger.fabric.gateway.Gateway;
 import org.hyperledger.fabric.gateway.Network;
@@ -24,7 +25,7 @@ public class App {
     }
 
     // helper function for getting connected to the gateway
-    public static Gateway connect() throws Exception{
+    public static Gateway connect() throws Exception {
         // Load a file system based wallet for managing identities.
         Path walletPath = Paths.get("wallet");
         Wallet wallet = Wallets.newFileSystemWallet(walletPath);
@@ -106,8 +107,7 @@ public class App {
 //            System.out.println("Evaluate Transaction: ReadAsset asset1");
 //            result = contract.evaluateTransaction("ReadAsset", "asset1");
 //            System.out.println("result: " + new String(result));
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             System.err.println(e);
         }
 

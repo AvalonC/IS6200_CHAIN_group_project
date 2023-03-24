@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://primefaces.org/ui">
 <h:head>
     <title>Hire process</title>
     <link rel="stylesheet" href="css/topbar.css"/>
@@ -12,6 +12,23 @@
         body {
             background: url("https://i.bmp.ovh/imgs/2022/05/09/84d3661dac387604.png") no-repeat center center fixed;
             background-size: auto, 100%;
+        }
+
+        h1 {
+            background-image: linear-gradient(to top left, steelblue, deepskyblue);
+            -webkit-background-clip: text;
+            color: transparent;
+            margin: 0;
+            padding: 0;
+            font-family: "Ubuntu", sans-serif;
+        }
+
+        .ui-widget {
+            font-family: "Ubuntu", sans-serif !important;
+        }
+
+        .ui-button {
+            font-family: "Ubuntu", sans-serif !important;
         }
     </style>
 
@@ -27,7 +44,7 @@
                     <a style="pointer-events: none"><img alt="logo" src="img/PageLogo.png"/></a>
                 </li>
                 <li>
-                    <h2 style="pointer-events: none">Hire Process Demostration</h2>
+                    <h2 style="pointer-events: none">CHAIN Group Project (Demo Application)</h2>
                 </li>
                 <li>
                     <a>Hires</a>
@@ -45,9 +62,45 @@
         </div>
     </div>
 
-    <div style="margin-top: 3%;position: relative;color: transparent;
-         box-shadow: 0 4px 8px 0 rgba(0,0,0,0), 0 6px 20px 0 rgba(0,0,0,0);">
 
+    <div style="margin-top: 2%;position: relative;background: transparent;
+         box-shadow: 0 4px 8px 0 rgba(0,0,0,0), 0 6px 20px 0 rgba(0,0,0,0);">
+        <p:panel>
+            <h1>Hire process</h1>
+            <h2>Demostration information</h2>
+            <p>For the demostration, the following information will be insert.</p>
+            <p>
+                Name: Steve Vincent<br/>
+                Birth: 06/05/2000<br/>
+                Graduation School: City University of Hong Kong<br/>
+                Job title: System Developer<br/>
+                Department: Research &amp; Development<br/>
+                Salary: HK$120,000
+            </p>
+            <p:divider align="left" type="dashed">
+                <b>Wizard Form</b>
+            </p:divider>
+            <div>
+                <h:form>
+                    <p:wizard flowListener="#{hireWizard.onFlowProcess}">
+                        <p:tab id="welcome" title="Weclome">
+                            <p:panel header="Welcome">
+                                <p:messages/>
+                                <p>Welcome to the corporation!</p>
+                                <p>Click Next for the following process</p>
+                            </p:panel>
+                        </p:tab>
+                    </p:wizard>
+                </h:form>
+            </div>
+            <p:divider align="left" type="dashed">
+                <b>Real Application</b>
+            </p:divider>
+            <p>
+                This page can exist in the ERP system as an information check page during hiring.
+                A simple wizard can be provided for information filling and replaces paper forms.
+            </p>
+        </p:panel>
     </div>
 </h:body>
 </html>
