@@ -71,20 +71,75 @@
             <h1>Inquiry process</h1>
             <p>This page will present all information in the network.</p>
 
-            <p:dataTable selectionMode="single" lazy="false">
+            <p:dataTable var="asset" value="#{employee.employeeList}" selectionMode="single"
+                         rowKey="#{asset.employeeID}">
                 <f:facet name="header">
-                    Company List
+                    Company Employee List
                 </f:facet>
 
                 <p:column headerText="Name">
+                    <h:outputText value="#{asset.name}"/>
                 </p:column>
                 <p:column headerText="Birth">
+                    <h:outputText value="#{asset.birthday}"/>
                 </p:column>
                 <p:column headerText="Job title">
+                    <h:outputText value="#{asset.jobTitle}"/>
                 </p:column>
                 <p:column headerText="Department">
+                    <h:outputText value="#{asset.department}"/>
+                </p:column>
+                <p:column headerText="Operation">
+                    <p:commandButton styleClass="rounded-button" icon="pi pi-file"
+                                     value="Check"
+                                     update=":form:detailedContent"
+                                     oncomplete="PF('detailedDialog').show()"
+                                     style="background-image: linear-gradient(to top left,steelblue,deepskyblue);margin-right: 2%"
+                                     process="@this">
+                        <f:setPropertyActionListener value="#{asset}"
+                                                     target="#{employee.selectedAsset}"/>
+                        <p:resetInput target=":form:detailedContent"/>
+                    </p:commandButton>
                 </p:column>
             </p:dataTable>
+
+            <h:form id="form">
+                <p:dialog header="Detailed Information" widgetVar="detailedDialog" modal="true" showEffect="fade"
+                          hideEffect="fade"
+                          resizable="false">
+                    <p:outputPanel id="detailedContent" style="text-align:center;">
+                        <p:panelGrid columns="2" columnClasses="label,value">
+
+                            <h:outputText value="EmployeeID:"/>
+                            <h:outputText value="#{employee.selectedAsset.employeeID}"/>
+
+                            <h:outputText value="Name:"/>
+                            <h:outputText value="#{employee.selectedAsset.name}"/>
+
+                            <h:outputText value="Birthday:"/>
+                            <h:outputText value="#{employee.selectedAsset.birthday}"/>
+
+                            <h:outputText value="Graduate School:"/>
+                            <h:outputText value="#{employee.selectedAsset.graduateSchool}"/>
+
+                            <h:outputText value="Department:"/>
+                            <h:outputText value="#{employee.selectedAsset.department}"/>
+
+                            <h:outputText value="Job Title:"/>
+                            <h:outputText value="#{employee.selectedAsset.jobTitle}"/>
+
+                            <h:outputText value="Salary:"/>
+                            <h:outputText value="#{employee.selectedAsset.salary}"/>
+
+                            <h:outputText value="Record:"/>
+                            <h:outputText value="#{employee.selectedAsset.record}"/>
+
+                            <h:outputText value="Card Number"/>
+                            <h:outputText value="#{employee.selectedAsset.cardNumber}"/>
+                        </p:panelGrid>
+                    </p:outputPanel>
+                </p:dialog>
+            </h:form>
         </p:panel>
     </div>
 </h:body>

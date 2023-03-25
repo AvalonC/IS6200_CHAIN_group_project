@@ -114,13 +114,13 @@ public final class App {
 
     public void run() throws GatewayException, CommitException {
         // Initialize a set of asset data on the ledger using the chaincode 'InitLedger' function.
-        initLedger();
+//        initLedger();
 
         // Return all the current assets on the ledger.
-        getAllAssets();
+//        getAllAssets();
 //
         // Create a new asset on the ledger.
-        createAsset();
+//        createAsset();
 
 //		// Update an existing asset asynchronously.
 //		transferAssetAsync();

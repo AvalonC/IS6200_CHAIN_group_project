@@ -9,4 +9,16 @@
         <managed-bean-class>viewModel.HireProcessWizard</managed-bean-class>
         <managed-bean-scope>view</managed-bean-scope>
     </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>employee</managed-bean-name>
+        <managed-bean-class>viewModel.employeeList</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>identity</managed-bean-name>
+        <managed-bean-class>viewModel.employeeCheck</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
 </faces-config>

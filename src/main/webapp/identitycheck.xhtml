@@ -31,7 +31,6 @@
             font-family: "Ubuntu", sans-serif !important;
         }
     </style>
-
 </h:head>
 
 <h:body>
@@ -63,19 +62,28 @@
         </div>
     </div>
 
-
     <div style="margin-top: 2%;position: relative;background: transparent;
          box-shadow: 0 4px 8px 0 rgba(0,0,0,0), 0 6px 20px 0 rgba(0,0,0,0);">
         <p:panel>
-            <h1>Indentity Check process</h1>
-            <p>Make the indentity check through this search frame....</p>
-            <div class="ui-inputgroup" style="margin-bottom: 1em; margin-top: 1em">
-                <p:inputText placeholder="Keyboard"/>
-                <p:commandButton icon="pi pi-search" styleClass="ui-button-warning"/>
-            </div>
-            <p:divider layout="left">
-                <b>Check result</b>
-            </p:divider>
+            <h:form id="form">
+
+                <h1>Indentity Check process</h1>
+                <p>Make the indentity check through this search frame....</p>
+                <div class="ui-inputgroup" style="margin-bottom: 1em; margin-top: 1em">
+                    <p:inputText placeholder="Input the EmployeeID..." value="#{identity.checkID}"/>
+                    <p:commandButton type="submit" icon="pi pi-search" update=":informationform"
+                                     value="Search" action="#{identity.check}">
+                    </p:commandButton>
+                </div>
+
+            </h:form>
+
+            <h:form id="informationform">
+                <p:divider layout="left">
+                    <b>Check result</b>
+                </p:divider>
+                <h:outputText value="#{identity.employeeInfo}" escape="false"/>
+            </h:form>
         </p:panel>
     </div>
 </h:body>
