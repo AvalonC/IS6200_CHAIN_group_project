@@ -8,6 +8,7 @@
 <h:head>
     <title>Mobilisation process</title>
     <link rel="stylesheet" href="css/topbar.css"/>
+    <link rel="shortcut icon" href="img/icon.ico"/>
     <style type="text/css">
         body {
             background: url("https://i.bmp.ovh/imgs/2022/05/09/84d3661dac387604.png") no-repeat center center fixed;
@@ -41,22 +42,22 @@
                     <a style="pointer-events: none"><img alt="logo" src="img/CityU.png"/></a>
                 </li>
                 <li>
-                    <a style="pointer-events: none"><img alt="logo" src="img/PageLogo.png"/></a>
+                    <a href="index.xhtml" style="pointer-events: none"><img alt="logo" src="img/PageLogo.png"/></a>
                 </li>
                 <li>
                     <h2 style="pointer-events: none">CHAIN Group Project (Demo Application)</h2>
                 </li>
                 <li>
-                    <a>Hires</a>
+                    <a href="hire.xhtml">Hires</a>
                 </li>
                 <li>
-                    <a>Mobilisation</a>
+                    <a href="mobilisation.xhtml">Mobilisation</a>
                 </li>
                 <li>
-                    <a>Inquiry</a>
+                    <a href="inquery.xhtml">Inquiry</a>
                 </li>
                 <li>
-                    <a>Identity Check</a>
+                    <a href="identitycheck.xhtml">Identity Check</a>
                 </li>
             </ul>
         </div>
@@ -69,22 +70,78 @@
             <h1>Mobilisation process</h1>
             <p>Make a mobilisation for designated employees</p>
 
-            <p:dataTable selectionMode="single" lazy="false">
+            <p:dataTable id="employeeTable" var="asset" value="#{employee.employeeList}" selectionMode="single"
+                         rowKey="#{asset.employeeID}">
                 <f:facet name="header">
-                    Company List
+                    Company Employee List
                 </f:facet>
 
                 <p:column headerText="Name">
+                    <h:outputText value="#{asset.name}"/>
                 </p:column>
                 <p:column headerText="Birth">
+                    <h:outputText value="#{asset.birthday}"/>
                 </p:column>
                 <p:column headerText="Job title">
+                    <h:outputText value="#{asset.jobTitle}"/>
                 </p:column>
                 <p:column headerText="Department">
+                    <h:outputText value="#{asset.department}"/>
                 </p:column>
-                <p:column headerText="operation">
+                <p:column headerText="Operation">
+                    <p:commandButton styleClass="rounded-button" icon="pi pi-pencil"
+                                     value="Edit"
+                                     update=":form:detailedContent"
+                                     oncomplete="PF('detailedDialog').show()"
+                                     style="background-image: linear-gradient(to top left,steelblue,deepskyblue);margin-right: 2%"
+                                     process="@this">
+                        <f:setPropertyActionListener value="#{asset}"
+                                                     target="#{modify.selectedAsset}"/>
+                        <p:resetInput target=":form:detailedContent"/>
+                    </p:commandButton>
                 </p:column>
             </p:dataTable>
+
+            <h:form id="form">
+                <p:dialog header="Detailed Information" widgetVar="detailedDialog" modal="true" showEffect="fade"
+                          hideEffect="fade"
+                          resizable="false">
+                    <p:outputPanel id="detailedContent" style="text-align:center;">
+                        <p:panelGrid columns="2" columnClasses="label,value">
+
+                            <h:outputText value="EmployeeID:"/>
+                            <h:outputText value="#{modify.selectedAsset.employeeID}"/>
+
+                            <h:outputText value="Name:"/>
+                            <h:outputText value="#{modify.selectedAsset.name}"/>
+
+                            <h:outputText value="Birthday:"/>
+                            <h:outputText value="#{modify.selectedAsset.birthday}"/>
+
+                            <h:outputText value="Graduate School:"/>
+                            <h:outputText value="#{modify.selectedAsset.graduateSchool}"/>
+
+                            <h:outputText value="Department:"/>
+                            <p:inputText value="#{modify.selectedAsset.department}"/>
+
+                            <h:outputText value="Job Title:"/>
+                            <p:inputText value="#{modify.selectedAsset.jobTitle}"/>
+
+                            <h:outputText value="Salary:"/>
+                            <p:inputText value="#{modify.selectedAsset.salary}"/>
+                        </p:panelGrid>
+                    </p:outputPanel>
+                    <f:facet name="footer">
+                        <p:commandButton value="OK" icon="pi pi-check-circle"
+                                         actionListener="#{modify.modify}"
+                                         update="detailedContent" process="detailedContent @this"
+                                         style="background-image: linear-gradient(to top left,royalblue,deepskyblue)"/>
+                        <p:commandButton value="Cancel" icon="pi pi-times-circle" styleClass="ui-button-secondary"
+                                         onclick="PF('detailedDialog').hide()"
+                                         style="background-image: linear-gradient(to top left,darkgrey,slategrey)"/>
+                    </f:facet>
+                </p:dialog>
+            </h:form>
         </p:panel>
     </div>
 </h:body>

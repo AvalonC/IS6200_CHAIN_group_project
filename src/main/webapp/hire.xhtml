@@ -8,6 +8,7 @@
 <h:head>
     <title>Hire process</title>
     <link rel="stylesheet" href="css/topbar.css"/>
+    <link rel="shortcut icon" href="img/icon.ico"/>
     <style type="text/css">
         body {
             background: url("https://i.bmp.ovh/imgs/2022/05/09/84d3661dac387604.png") no-repeat center center fixed;
@@ -41,22 +42,22 @@
                     <a style="pointer-events: none"><img alt="logo" src="img/CityU.png"/></a>
                 </li>
                 <li>
-                    <a style="pointer-events: none"><img alt="logo" src="img/PageLogo.png"/></a>
+                    <a href="index.xhtml" style="pointer-events: none"><img alt="logo" src="img/PageLogo.png"/></a>
                 </li>
                 <li>
                     <h2 style="pointer-events: none">CHAIN Group Project (Demo Application)</h2>
                 </li>
                 <li>
-                    <a>Hires</a>
+                    <a href="hire.xhtml">Hires</a>
                 </li>
                 <li>
-                    <a>Mobilisation</a>
+                    <a href="mobilisation.xhtml">Mobilisation</a>
                 </li>
                 <li>
-                    <a>Inquiry</a>
+                    <a href="inquery.xhtml">Inquiry</a>
                 </li>
                 <li>
-                    <a>Identity Check</a>
+                    <a href="identitycheck.xhtml">Identity Check</a>
                 </li>
             </ul>
         </div>
@@ -88,8 +89,68 @@
                                 <p:messages/>
                                 <p>Welcome to the corporation!</p>
                                 <p>Click Next for the following process</p>
+                                <img src="https://i.328888.xyz/2023/03/25/iAaUXv.md.png" alt="iAaUXv.png"
+                                     border="0"/>
                             </p:panel>
                         </p:tab>
+
+                        <p:tab title="Basic Information">
+                            <p:panel header="Personal Information">
+                                <p:panelGrid columns="3" styleClass="grid,grid,grid">
+                                    <p:panelGrid columns="2" styleClass="label,value">
+                                        <h:outputText value="Name: "/>
+                                        <p:inputText value="#{hireWizard.name}" required="true"/>
+                                        <p:outputLabel value="Month:"/>
+                                        <p:datePicker id="navigator" value="#{hireWizard.birthday}"
+                                                      monthNavigator="true"
+                                                      yearNavigator="true"
+                                                      yearRange="1940:2010"
+                                                      showWeek="true"/>
+                                        <h:outputText value="Graduation School: "/>
+                                        <p:inputText value="#{hireWizard.graduateSchool}" required="true"/>
+                                    </p:panelGrid>
+                                </p:panelGrid>
+                            </p:panel>
+                        </p:tab>
+
+                        <p:tab title="Job Information">
+                            <p:panel header="Personal Information">
+                                <p:panelGrid columns="3" styleClass="grid,grid,grid">
+                                    <p:panelGrid columns="2" styleClass="label,value">
+                                        <p:outputLabel value="Department"/>
+                                        <p:inputText value="#{hireWizard.department}" required="true"/>
+                                        <h:outputText value="Job title: "/>
+                                        <p:inputText value="#{hireWizard.jobTitle}" required="true"/>
+                                        <p:outputLabel value="Salary: "/>
+                                        <p:inputText value="#{hireWizard.salary}" required="true"/>
+                                    </p:panelGrid>
+                                </p:panelGrid>
+                            </p:panel>
+                        </p:tab>
+
+                        <p:tab title="Finished">
+                            <p:panel header="Final check">
+                                <p:panelGrid columns="6" styleClass="grid,grid,grid,grid,grid,grid">
+                                    <p:panelGrid columns="2" styleClass="label,value">
+                                        <h:outputText value="Name: "/>
+                                        <h:outputText value="#{hireWizard.name}"/>
+                                        <h:outputText value="Birthday: "/>
+                                        <h:outputText value="#{hireWizard.birthday}"/>
+                                        <h:outputText value="Graduation School: "/>
+                                        <h:outputText value="#{hireWizard.graduateSchool}"/>
+                                        <h:outputText value="Department: "/>
+                                        <h:outputText value="#{hireWizard.department}"/>
+                                        <h:outputText value="Job title"/>
+                                        <h:outputText value="#{hireWizard.jobTitle}"/>
+                                        <h:outputText value="Salary: "/>
+                                        <h:outputText value="#{hireWizard.salary}"/>
+                                    </p:panelGrid>
+                                </p:panelGrid>
+                            </p:panel>
+                            <p:commandButton value="Submit" action="#{hireWizard.save}"
+                                             process="@this"/>
+                        </p:tab>
+
                     </p:wizard>
                 </h:form>
             </div>
