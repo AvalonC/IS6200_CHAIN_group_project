@@ -168,8 +168,14 @@ public class HireProcessWizard implements Serializable {
         try (var gateway = builder.connect()) {
             insert insert = new insert(gateway, CHANNEL_NAME, CHAINCODE_NAME);
             insert.createAsset(asset);
+            FacesMessage facesMessage = new FacesMessage("Successful add employee！", "You can inquire this employee through the number: " +
+                    asset.getEmployeeID());
+            FacesContext.getCurrentInstance().addMessage(null, facesMessage);
         } catch (EndorseException | CommitException | SubmitException | CommitStatusException e) {
+            FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error Happened!", "Please check your CLI");
+            FacesContext.getCurrentInstance().addMessage(null, facesMessage);
             throw new RuntimeException(e);
+
         }
 
 

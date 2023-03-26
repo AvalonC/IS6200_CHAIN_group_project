@@ -20,7 +20,7 @@ public class insert {
         System.out.println("\n--> Submit Transaction: CreateAsset, creates new asset with new arguments");
 
         contract.submitTransaction("CreateAsset", asset.getEmployeeID(), asset.getName(), asset.getBirthday(),
-                asset.getBirthday(), asset.getJobTitle(), asset.getDepartment(), String.valueOf(asset.getSalary()),
+                asset.getGraduateSchool(), asset.getJobTitle(), asset.getDepartment(), String.valueOf(asset.getSalary()),
                 asset.getCardNumber(), asset.getRecord());
 
         System.out.println("*** Transaction committed successfully");

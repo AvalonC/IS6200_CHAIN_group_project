@@ -83,6 +83,7 @@
             </p:divider>
             <div>
                 <h:form>
+                    <p:growl id="growl" sticky="true" showDetail="true"/>
                     <p:wizard flowListener="#{hireWizard.onFlowProcess}">
                         <p:tab id="welcome" title="Weclome">
                             <p:panel header="Welcome">
@@ -147,7 +148,8 @@
                                     </p:panelGrid>
                                 </p:panelGrid>
                             </p:panel>
-                            <p:commandButton value="Submit" action="#{hireWizard.save}"
+                            <p:commandButton style="margin-top: 2em" value="Submit"
+                                             action="#{hireWizard.save}" update="growl"
                                              process="@this"/>
                         </p:tab>
 

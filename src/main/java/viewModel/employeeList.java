@@ -43,7 +43,7 @@ public class employeeList implements Serializable {
     private static final String PEER_ENDPOINT = "localhost:7051";
     private static final String OVERRIDE_AUTH = "peer0.org1.example.com";
 
-    private List<Asset> employeeList = new ArrayList<>();
+    private final List<Asset> employeeList = new ArrayList<>();
     private Asset selectedAsset;
     private static String employeeJson;
 

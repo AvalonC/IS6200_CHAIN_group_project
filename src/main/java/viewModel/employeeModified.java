@@ -1,20 +1,16 @@
 package viewModel;
 
-import bao.inquery;
 import bao.modify;
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 import io.grpc.ManagedChannel;
 import io.grpc.netty.shaded.io.grpc.netty.GrpcSslContexts;
 import io.grpc.netty.shaded.io.grpc.netty.NettyChannelBuilder;
 import model.Asset;
-import org.hyperledger.fabric.client.CommitException;
 import org.hyperledger.fabric.client.Gateway;
-import org.hyperledger.fabric.client.GatewayException;
 import org.hyperledger.fabric.client.identity.*;
 import org.primefaces.PrimeFaces;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import java.io.IOException;
 import java.io.Serializable;
 import java.nio.file.Files;
@@ -24,8 +20,6 @@ import java.security.InvalidKeyException;
 import java.security.cert.CertificateException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class employeeModified implements Serializable {
@@ -86,7 +80,7 @@ public class employeeModified implements Serializable {
         }
     }
 
-    public void modify() throws CertificateException, IOException, InvalidKeyException, InterruptedException, CommitException, GatewayException {
+    public void modify() throws CertificateException, IOException, InvalidKeyException, InterruptedException {
         // The gRPC client connection should be shared by all Gateway connections to
         // this endpoint.
         var channel = newGrpcConnection();
@@ -110,8 +104,12 @@ public class employeeModified implements Serializable {
             modify.updateExistAsset(selectedAsset, newJob, newDepartment, newSalary, newRecord);
             PrimeFaces.current().executeScript("PF('detailedDialog').hide()");
             PrimeFaces.current().ajax().update("form:messages", "form:employeeTable");
+            FacesMessage facesMessage = new FacesMessage("Successful modified employee！", "You can inquire this employee through the number: " +
+                    selectedAsset.getEmployeeID());
+            FacesContext.getCurrentInstance().addMessage(null, facesMessage);
         } catch (Exception e) {
-
+            FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error Happened!", "Please check your CLI");
+            FacesContext.getCurrentInstance().addMessage(null, facesMessage);
         } finally {
             channel.shutdownNow().awaitTermination(5, TimeUnit.SECONDS);
         }

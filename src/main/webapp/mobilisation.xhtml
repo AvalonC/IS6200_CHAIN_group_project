@@ -67,42 +67,45 @@
     <div style="margin-top: 2%;position: relative;background: transparent;
          box-shadow: 0 4px 8px 0 rgba(0,0,0,0), 0 6px 20px 0 rgba(0,0,0,0);">
         <p:panel>
-            <h1>Mobilisation process</h1>
-            <p>Make a mobilisation for designated employees</p>
-
-            <p:dataTable id="employeeTable" var="asset" value="#{employee.employeeList}" selectionMode="single"
-                         rowKey="#{asset.employeeID}">
-                <f:facet name="header">
-                    Company Employee List
-                </f:facet>
-
-                <p:column headerText="Name">
-                    <h:outputText value="#{asset.name}"/>
-                </p:column>
-                <p:column headerText="Birth">
-                    <h:outputText value="#{asset.birthday}"/>
-                </p:column>
-                <p:column headerText="Job title">
-                    <h:outputText value="#{asset.jobTitle}"/>
-                </p:column>
-                <p:column headerText="Department">
-                    <h:outputText value="#{asset.department}"/>
-                </p:column>
-                <p:column headerText="Operation">
-                    <p:commandButton styleClass="rounded-button" icon="pi pi-pencil"
-                                     value="Edit"
-                                     update=":form:detailedContent"
-                                     oncomplete="PF('detailedDialog').show()"
-                                     style="background-image: linear-gradient(to top left,steelblue,deepskyblue);margin-right: 2%"
-                                     process="@this">
-                        <f:setPropertyActionListener value="#{asset}"
-                                                     target="#{modify.selectedAsset}"/>
-                        <p:resetInput target=":form:detailedContent"/>
-                    </p:commandButton>
-                </p:column>
-            </p:dataTable>
-
             <h:form id="form">
+                <h1>Mobilisation process</h1>
+                <p>Make a mobilisation for designated employees</p>
+                <p:growl id="growl" sticky="true" showDetail="true"/>
+                <p:dataTable id="employeeTable" var="asset" value="#{employee.employeeList}" selectionMode="single"
+                             rowKey="#{asset.employeeID}">
+                    <f:facet name="header">
+                        Company Employee List
+                    </f:facet>
+                    <p:column headerText="ID">
+                        <h:outputText value="#{asset.employeeID}"/>
+                    </p:column>
+                    <p:column headerText="Name">
+                        <h:outputText value="#{asset.name}"/>
+                    </p:column>
+                    <p:column headerText="Birth">
+                        <h:outputText value="#{asset.birthday}"/>
+                    </p:column>
+                    <p:column headerText="Job title">
+                        <h:outputText value="#{asset.jobTitle}"/>
+                    </p:column>
+                    <p:column headerText="Department">
+                        <h:outputText value="#{asset.department}"/>
+                    </p:column>
+                    <p:column headerText="Operation">
+                        <p:commandButton styleClass="rounded-button" icon="pi pi-pencil"
+                                         value="Edit"
+                                         update=":form:detailedContent"
+                                         oncomplete="PF('detailedDialog').show()"
+                                         style="background-image: linear-gradient(to top left,steelblue,deepskyblue);margin-right: 2%"
+                                         process="@this">
+                            <f:setPropertyActionListener value="#{asset}"
+                                                         target="#{modify.selectedAsset}"/>
+                            <p:resetInput target=":form:detailedContent"/>
+                        </p:commandButton>
+                    </p:column>
+                </p:dataTable>
+
+
                 <p:dialog header="Detailed Information" widgetVar="detailedDialog" modal="true" showEffect="fade"
                           hideEffect="fade"
                           resizable="false">
@@ -134,7 +137,7 @@
                     <f:facet name="footer">
                         <p:commandButton value="OK" icon="pi pi-check-circle"
                                          actionListener="#{modify.modify}"
-                                         update="detailedContent" process="detailedContent @this"
+                                         update="@form" process="detailedContent @this"
                                          style="background-image: linear-gradient(to top left,royalblue,deepskyblue)"/>
                         <p:commandButton value="Cancel" icon="pi pi-times-circle" styleClass="ui-button-secondary"
                                          onclick="PF('detailedDialog').hide()"
