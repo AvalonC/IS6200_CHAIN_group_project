@@ -2,15 +2,12 @@ package viewModel;
 
 import bao.inquery;
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import io.grpc.ManagedChannel;
 import io.grpc.netty.shaded.io.grpc.netty.GrpcSslContexts;
 import io.grpc.netty.shaded.io.grpc.netty.NettyChannelBuilder;
 import model.Asset;
-import org.hyperledger.fabric.client.CommitException;
 import org.hyperledger.fabric.client.Gateway;
-import org.hyperledger.fabric.client.GatewayException;
 import org.hyperledger.fabric.client.identity.*;
 
 import java.io.IOException;
@@ -40,24 +37,23 @@ public class employeeCheck implements Serializable {
     private static final String PEER_ENDPOINT = "localhost:7051";
     private static final String OVERRIDE_AUTH = "peer0.org1.example.com";
 
-    private String employeeInfo = "";
-    private String checkID = "";
+    private String checkInfo = "";
+    private String checkResult = "";
 
-
-    public String getEmployeeInfo() {
-        return employeeInfo;
+    public String getCheckInfo() {
+        return checkInfo;
     }
 
-    public void setEmployeeInfo(String employeeInfo) {
-        this.employeeInfo = employeeInfo;
+    public void setCheckInfo(String checkInfo) {
+        this.checkInfo = checkInfo;
     }
 
-    public String getCheckID() {
-        return checkID;
+    public String getCheckResult() {
+        return checkResult;
     }
 
-    public void setCheckID(String checkID) {
-        this.checkID = checkID;
+    public void setCheckResult(String checkResult) {
+        this.checkResult = checkResult;
     }
 
     private static ManagedChannel newGrpcConnection() throws IOException, CertificateException {
@@ -89,11 +85,8 @@ public class employeeCheck implements Serializable {
         }
     }
 
-    public void check() throws CommitException, GatewayException, CertificateException, IOException, InvalidKeyException, InterruptedException {
-
-        // The gRPC client connection should be shared by all Gateway connections to
-        // this endpoint.
-        checkID = getCheckID();
+    public void check() throws CertificateException, IOException, InvalidKeyException {
+        checkInfo = getCheckInfo();
         var channel = newGrpcConnection();
 
         var builder = Gateway.newInstance().identity(newIdentity()).signer(newSigner()).connection(channel)
@@ -104,27 +97,36 @@ public class employeeCheck implements Serializable {
                 .commitStatusOptions(options -> options.withDeadlineAfter(1, TimeUnit.MINUTES));
 
         try (var gateway = builder.connect()) {
-            employeeInfo = new inquery(gateway, CHANNEL_NAME, CHAINCODE_NAME).getAsset(checkID);
-            System.out.println("Transforming....to JSONObject");
-            JSONObject employee = JSON.parseObject(employeeInfo);
+
+            JSONObject employee = JSON.parseObject(checkInfo);
             Asset asset = new Asset();
             asset.setBirthday(employee.getString("birthday"));
             asset.setCardNumber(employee.getString("cardNumber"));
             asset.setDepartment(employee.getString("department"));
-            asset.setEmployeeID(employee.getString("employeeID"));
             asset.setGraduateSchool(employee.getString("graduateSchool"));
             asset.setJobTitle(employee.getString("jobTitle"));
             asset.setName(employee.getString("name"));
             asset.setRecord(employee.getString("record"));
             asset.setSalary(Float.parseFloat(employee.getString("salary")));
-            employeeInfo = asset.toString();
 
-        } catch (GatewayException e) {
-            employeeInfo = "No such people, please check your input again";
-        } finally {
-            channel.shutdownNow().awaitTermination(5, TimeUnit.SECONDS);
+            asset.setEmployeeID(employee.getString("employeeID"));
+            String existEmployee = new inquery(gateway, CHANNEL_NAME, CHAINCODE_NAME).getAsset(employee.getString("employeeID"));
+            JSONObject existEmployeeInfo = JSON.parseObject(existEmployee);
+            Asset existAsset = new Asset();
+            existAsset.setBirthday(existEmployeeInfo.getString("birthday"));
+            existAsset.setCardNumber(existEmployeeInfo.getString("cardNumber"));
+            existAsset.setDepartment(existEmployeeInfo.getString("department"));
+            existAsset.setEmployeeID(existEmployeeInfo.getString("employeeID"));
+            existAsset.setGraduateSchool(existEmployeeInfo.getString("graduateSchool"));
+            existAsset.setJobTitle(existEmployeeInfo.getString("jobTitle"));
+            existAsset.setName(existEmployeeInfo.getString("name"));
+            existAsset.setRecord(existEmployeeInfo.getString("record"));
+            existAsset.setSalary(Float.parseFloat(existEmployeeInfo.getString("salary")));
+            if (asset.equals(existAsset)) {
+                checkResult = "This employee is existed, the information presented below:<br/>" + existAsset;
+            }
+        } catch (Exception e) {
+            checkResult = "This is an invalid information!!";
         }
     }
-
-
 }

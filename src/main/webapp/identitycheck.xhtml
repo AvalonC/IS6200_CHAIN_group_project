@@ -69,21 +69,56 @@
             <h:form id="form">
 
                 <h1>Indentity Check process</h1>
-                <p>Make the indentity check through this search frame....</p>
-                <div class="ui-inputgroup" style="margin-bottom: 1em; margin-top: 1em">
-                    <p:inputText placeholder="Input the EmployeeID..." value="#{identity.checkID}"/>
-                    <p:commandButton type="submit" icon="pi pi-search" update=":informationform"
-                                     value="Search" action="#{identity.check}">
-                    </p:commandButton>
-                </div>
+                <p>Upload employee information here for information verification</p>
+                <p:divider align="left" type="dashed">
+                    <b>Case</b>
+                </p:divider>
+                <p:panelGrid columns="4" style="border:0px none; background-color:transparent;">
+                    <p:column>
+                        <p:row>
+                            <h2>
+                                The following information will be used for test.
+                            </h2>
+                        </p:row>
+
+                        <p:row>
+                            <p>
+                                {
+                                "birthday": "1985-07-19",<br/>
+                                "cardNumber": "9800809043345643",<br/>
+                                "department": "Marketing Department",<br/>
+                                "employeeID": "Em19464",<br/>
+                                "graduateSchool": "The University of Hong Kong",<br/>
+                                "jobTitle": "Manager",<br/>
+                                "name": "Ferdinand von Schirach",<br/>
+                                "record": "11/03/2021: Manager",<br/>
+                                "salary": 30000.0<br/>
+                                }
+                            </p>
+                        </p:row>
+                    </p:column>
+
+                    <p:column>
+                        <p:row>
+                            The following text area is set for inputting the information manually.<br/>
+                            <p:inputTextarea style="margin-top: 2em" rows="12" cols="50"
+                                             value="#{check.checkInfo}"/>
+                            <br/>
+                            <p:commandButton style="margin-top: 2em" type="submit" icon="pi pi-search" update=":informationform"
+                                             value="Identity Check" action="#{check.check}">
+                            </p:commandButton>
+                        </p:row>
+                    </p:column>
+
+                </p:panelGrid>
 
             </h:form>
 
             <h:form id="informationform">
-                <p:divider layout="left">
+                <p:divider align="left">
                     <b>Check result</b>
                 </p:divider>
-                <h:outputText value="#{identity.employeeInfo}" escape="false"/>
+                <h:outputText value="#{check.checkResult}" escape="false"/>
             </h:form>
         </p:panel>
     </div>

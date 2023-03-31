@@ -17,14 +17,20 @@
     </managed-bean>
 
     <managed-bean>
-        <managed-bean-name>identity</managed-bean-name>
-        <managed-bean-class>viewModel.employeeCheck</managed-bean-class>
+        <managed-bean-name>search</managed-bean-name>
+        <managed-bean-class>viewModel.employeeSearch</managed-bean-class>
         <managed-bean-scope>view</managed-bean-scope>
     </managed-bean>
 
     <managed-bean>
         <managed-bean-name>modify</managed-bean-name>
         <managed-bean-class>viewModel.employeeModified</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>check</managed-bean-name>
+        <managed-bean-class>viewModel.employeeCheck</managed-bean-class>
         <managed-bean-scope>view</managed-bean-scope>
     </managed-bean>
 </faces-config>

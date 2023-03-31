@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 public class Asset {
 
     private String employeeID;
@@ -107,6 +109,19 @@ public class Asset {
         this.salary = salary;
         this.cardNumber = cardNumber;
         this.record = record;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Asset asset = (Asset) o;
+        return Float.compare(asset.getSalary(), getSalary()) == 0 && Objects.equals(getEmployeeID(), asset.getEmployeeID()) && Objects.equals(getName(), asset.getName()) && Objects.equals(getBirthday(), asset.getBirthday()) && Objects.equals(getGraduateSchool(), asset.getGraduateSchool()) && Objects.equals(getJobTitle(), asset.getJobTitle()) && Objects.equals(getDepartment(), asset.getDepartment()) && Objects.equals(getCardNumber(), asset.getCardNumber()) && Objects.equals(getRecord(), asset.getRecord());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getEmployeeID(), getName(), getBirthday(), getGraduateSchool(), getJobTitle(), getDepartment(), getSalary(), getCardNumber(), getRecord());
     }
 
     @Override
