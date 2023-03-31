@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Hire process</title>
+    <link rel="stylesheet" href="css/topbar.css"/>
+    <link rel="shortcut icon" href="img/icon.ico"/>
+    <style type="text/css">
+        body {
+            background: url("https://i.bmp.ovh/imgs/2022/05/09/84d3661dac387604.png") no-repeat center center fixed;
+            background-size: auto, 100%;
+        }
+
+        h1 {
+            background-image: linear-gradient(to top left, steelblue, deepskyblue);
+            -webkit-background-clip: text;
+            color: transparent;
+            margin: 0;
+            padding: 0;
+            font-family: "Ubuntu", sans-serif;
+        }
+
+        .ui-widget {
+            font-family: "Ubuntu", sans-serif !important;
+        }
+
+        .ui-button {
+            font-family: "Ubuntu", sans-serif !important;
+        }
+    </style>
+
+</h:head>
+<h:body>
+    <div class="top-bar">
+        <div class="box-top">
+            <ul class="top-ui">
+                <li>
+                    <a style="pointer-events: none"><img alt="logo" src="img/CityU.png"/></a>
+                </li>
+                <li>
+                    <a href="index.xhtml" style="pointer-events: none"><img alt="logo" src="img/PageLogo.png"/></a>
+                </li>
+                <li>
+                    <h2 style="pointer-events: none">CHAIN Group Project (Demo Application)</h2>
+                </li>
+                <li>
+                    <a href="hire.xhtml">Hires</a>
+                </li>
+                <li>
+                    <a href="mobilisation.xhtml">Mobilisation</a>
+                </li>
+                <li>
+                    <a href="inquery.xhtml">Inquiry</a>
+                </li>
+                <li>
+                    <a href="identitycheck.identitySearch.xhtml">Identity Check</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div style="margin-top: 2%;position: relative;background: transparent;
+         box-shadow: 0 4px 8px 0 rgba(0,0,0,0), 0 6px 20px 0 rgba(0,0,0,0);">
+        <p:panel>
+            <h1>Hire process</h1>
+            <h2>Demostration information</h2>
+            <p>For the demostration, the following information will be insert.</p>
+            <p>
+                Name: Steve Vincent<br/>
+                Birth: 06/05/2000<br/>
+                Graduation School: City University of Hong Kong<br/>
+                Job title: System Developer<br/>
+                Department: Research &amp; Development<br/>
+                Salary: HK$120,000
+            </p>
+            <p:divider align="left" type="dashed">
+                <b>Wizard Form</b>
+            </p:divider>
+            <div>
+                <h:form>
+                    <p:growl id="growl" sticky="true" showDetail="true"/>
+                    <p:wizard flowListener="#{hireWizard.onFlowProcess}">
+                        <p:tab id="welcome" title="Weclome">
+                            <p:panel header="Welcome">
+                                <p:messages/>
+                                <p>Welcome to the corporation!</p>
+                                <p>Click Next for the following process</p>
+                                <img src="https://i.328888.xyz/2023/03/25/iAaUXv.md.png" alt="iAaUXv.png"
+                                     border="0"/>
+                            </p:panel>
+                        </p:tab>
+
+                        <p:tab title="Basic Information">
+                            <p:panel header="Personal Information">
+                                <p:panelGrid columns="3" styleClass="grid,grid,grid">
+                                    <p:panelGrid columns="2" styleClass="label,value">
+                                        <h:outputText value="Name: "/>
+                                        <p:inputText value="#{hireWizard.name}" required="true"/>
+                                        <p:outputLabel value="Month:"/>
+                                        <p:datePicker id="navigator" value="#{hireWizard.birthday}"
+                                                      monthNavigator="true"
+                                                      yearNavigator="true"
+                                                      yearRange="1940:2010"
+                                                      showWeek="true"/>
+                                        <h:outputText value="Graduation School: "/>
+                                        <p:inputText value="#{hireWizard.graduateSchool}" required="true"/>
+                                    </p:panelGrid>
+                                </p:panelGrid>
+                            </p:panel>
+                        </p:tab>
+
+                        <p:tab title="Job Information">
+                            <p:panel header="Personal Information">
+                                <p:panelGrid columns="3" styleClass="grid,grid,grid">
+                                    <p:panelGrid columns="2" styleClass="label,value">
+                                        <p:outputLabel value="Department"/>
+                                        <p:inputText value="#{hireWizard.department}" required="true"/>
+                                        <h:outputText value="Job title: "/>
+                                        <p:inputText value="#{hireWizard.jobTitle}" required="true"/>
+                                        <p:outputLabel value="Salary: "/>
+                                        <p:inputText value="#{hireWizard.salary}" required="true"/>
+                                    </p:panelGrid>
+                                </p:panelGrid>
+                            </p:panel>
+                        </p:tab>
+
+                        <p:tab title="Finished">
+                            <p:panel header="Final check">
+                                <p:panelGrid columns="6" styleClass="grid,grid,grid,grid,grid,grid">
+                                    <p:panelGrid columns="2" styleClass="label,value">
+                                        <h:outputText value="Name: "/>
+                                        <h:outputText value="#{hireWizard.name}"/>
+                                        <h:outputText value="Birthday: "/>
+                                        <h:outputText value="#{hireWizard.birthday}"/>
+                                        <h:outputText value="Graduation School: "/>
+                                        <h:outputText value="#{hireWizard.graduateSchool}"/>
+                                        <h:outputText value="Department: "/>
+                                        <h:outputText value="#{hireWizard.department}"/>
+                                        <h:outputText value="Job title"/>
+                                        <h:outputText value="#{hireWizard.jobTitle}"/>
+                                        <h:outputText value="Salary: "/>
+                                        <h:outputText value="#{hireWizard.salary}"/>
+                                    </p:panelGrid>
+                                </p:panelGrid>
+                            </p:panel>
+                            <p:commandButton style="margin-top: 2em" value="Submit"
+                                             action="#{hireWizard.save}" update="growl"
+                                             process="@this"/>
+                        </p:tab>
+
+                    </p:wizard>
+                </h:form>
+            </div>
+            <p:divider align="left" type="dashed">
+                <b>Real Application</b>
+            </p:divider>
+            <p>
+                This page can exist in the ERP system as an information check page during hiring.
+                A simple wizard can be provided for information filling and replaces paper forms.
+            </p>
+        </p:panel>
+    </div>
+</h:body>
+</html>
