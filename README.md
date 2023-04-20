@@ -1,6 +1,7 @@
-# IS6200 Chain Group Project
+# IS6200 CHAIN Group Project
 
 ## Introduction
+![CHAIN_logo](https://github.com/AvalonC/IS6200_CHAIN_group_project/blob/main/CHAIN.png)
 
 **CHAIN Group Project**
 
@@ -28,7 +29,7 @@ If you are using Linux, You only need
 
 ## Steps
 
-1. before running this application, You are required to initialize the fabric network first.
+1. before running this application, You are required to prepare all the softwares first.
 2. you are required to pull the project in the `~/fabric-samples/asset-transfer-basic/`, then you can run this application.
 3. you are required to initialize the network with the following command:   `./network.sh up createChannel -c mychannel -ca` 
 The command will build a channel, and then create a CA to define the admin.
