@@ -9,7 +9,7 @@
 
 ## Prepare for Running the system
 
-Given we still need run a java file before the system run, I suggest you to run this application in the IDE.
+Given we still need to run a java file before the system run, I suggest you to run this application in the IDE.
 
 If you are using Windows 10/11 with WSL 2(It can only run on WSL 2), You need the following software:
 - HyperLedger Fabric Sample
